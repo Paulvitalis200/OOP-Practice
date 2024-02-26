@@ -22,6 +22,9 @@ class Stocks:
             if count < n:
                 print(key + ' | ' + str(value))
                 count += 1
+            if count == n:
+                break
+            print(key)
        
 
 
