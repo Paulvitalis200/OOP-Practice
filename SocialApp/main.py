@@ -99,8 +99,7 @@ class Social:
                 break
 
     def highest_liked_content(self):
-        max_attr = max(self.content, key=lambda x: x['likes'])
-        return max_attr
+        return max(self.content, key=lambda x: x['likes'])
     
 
 social_app = Social()
