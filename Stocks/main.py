@@ -1,31 +1,29 @@
-# Write code to return top traded stocks
-# Record each trade as key and value pair
-# When a trade is made, increment/decrement the value of that key
-# Sort the hashmap and return the top 3 items in the hashmap
+# Write code to return top traded stocks given a list of stocks
+
+# APPL: 300
+# GOOGL: 499
+# BLOOM: 900
+
+# Methodology
+# Keep track of number of trades on each stock. Key value. Probably a hashmap/dictionary
+# When a trade is made, increment the count in the hashmap
+# Order the hashmap
+# Add method to return top(n) stocks
 
 class Stocks:
     def __init__(self):
-        self.hash_map = {}
+        self.stocks = {}
 
-    def record_trade(self, stock, value):
-        # {'Netflix': 500}
-        if stock in self.hash_map:
-            self.hash_map[stock] = self.hash_map[stock] + value
+    def record_trade(self, stock_name, amount):
+        if stock_name not in self.stocks:
+            self.stocks[stock_name] = amount
         else:
-            self.hash_map[stock] = value
+            self.stocks[stock_name] += amount
 
     def print_top_stocks(self, n):
-        sorted_stocks = dict(sorted(self.hash_map.items(), key=lambda x:x[1], reverse=True))
+        ordered_stocks = sorted(self.stocks.items(), key=lambda x: x[1], reverse=True)
 
-        count = 0
-        for key, value in sorted_stocks.items():
-            if count < n:
-                print(key + ' | ' + str(value))
-                count += 1
-            if count == n:
-                break
-            print(key)
-       
+        return ordered_stocks[:n]
 
 
 stocks = Stocks()
@@ -56,4 +54,4 @@ stocks.record_trade('Netflix', 600)
 stocks.record_trade('Microsoft', 200)
 stocks.record_trade('Netflix', 1000)
 stocks.record_trade('Netflix', 300)
-print(stocks.print_top_stocks(5))
+print(stocks.print_top_stocks(3))
